@@ -34,7 +34,6 @@ void Contact::register_contact(int index)
 
 std::string Contact::len_nbr_valid(int i)
 {
-	int nbr_len;
 	std::stringstream convert;
 	std::string text_nbr;
 	convert << i;
@@ -57,8 +56,13 @@ std::string Contact::len_valid(std::string *text)
 		std::string spaces_bfr(10 - text_length, ' ');
 		return (spaces_bfr + *text);
 	}
-
 }
+
+int Contact::show_index()
+{
+	return (contact_index);
+}
+
 
 void Contact::display_contact()
 {
@@ -74,10 +78,10 @@ void Contact::display_contact()
 
 void Contact::list_contact()
 {
-	std::cout << " " << len_nbr_valid(contact_index) << "|";
+	std::cout << "|" << len_nbr_valid(contact_index) << "|";
 	std::cout << " " << len_valid(&first_name) << "|";
 	std::cout << " " << len_valid(&last_name) << "|";
 	std::cout << " " << len_valid(&nickname) << "|";
 	std::cout << " " << len_valid(&phone_number) << "|" << std::endl;
-
+	std::cout<< "------------------------------------------------------------"<< std::endl;
 }

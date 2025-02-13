@@ -4,7 +4,6 @@
 #include <string>
 #include <iostream>
 #include <sstream>
-#include <array>
 #include <limits>
 
 class Contact
@@ -28,6 +27,7 @@ public:
 	std::string len_valid(std::string *text);
 	std::string len_nbr_valid(int i);
 	void list_contact();
+	int show_index();
 };
 
 

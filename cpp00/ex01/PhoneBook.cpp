@@ -2,9 +2,9 @@
 
 void PhoneBook::add()
 {
-	contacts[phone_index % 3].register_contact(phone_index + 1);
+	contacts[phone_index % phone_limit].register_contact(phone_index + 1);
 	phone_index++;
-
+	
 }
 
 void PhoneBook::list_all()
@@ -12,13 +12,31 @@ void PhoneBook::list_all()
 	int i;
 
 	i = 0;
-	std::cout << "      Index|";
+	std::cout << "|     Index|";
 	std::cout << "  Last Name|";
 	std::cout << " First Name|";
 	std::cout << "   Nickname|";
 	std::cout << "      Phone|" << std::endl;
-	while (i <= 2 && i < phone_index)
+	while (i < phone_limit && i < phone_index)
 		contacts[i++].list_contact();
+}
+
+int PhoneBook::showContactByIndex(int index)
+{
+	int	i;
+
+	i = 0;
+	while (i < phone_limit)
+	{
+		if (contacts[i].show_index() == index)
+		{
+			contacts[i].display_contact();
+			return i;
+		}
+		i++;
+	}
+	std::cout << "Sorry, Couldn't find the index!" << std::endl;
+	return (-1);
 }
 
 void PhoneBook::search()
@@ -40,9 +58,9 @@ void PhoneBook::search()
 	if (i <= 0)
 		std::cout << "Invalid Index! Needs to be bigger than 0" << std::endl;
 	else if (phone_index == 0)
-		std::cout << "No Contacts yet" << std::endl;
+		std::cout << "No Contacts on the PhoneBook yet" << std::endl;
 	else if (phone_index < i)
 		std::cout << "The contact index you are searching doesn't exist" << std::endl;
 	else
-		contacts[i - 1].display_contact();
+		showContactByIndex(i);
 }

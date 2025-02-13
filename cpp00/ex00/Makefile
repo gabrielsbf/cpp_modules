@@ -1,7 +1,7 @@
 NAME = megaphone
 
 RM = rm -rf
-COMPILER = g++
+COMPILER = g++ -Wall -Wextra -Werror --std=c++98
 
 DIR_OBJS = builds/
 DIR_SRCS = ./
@@ -27,11 +27,8 @@ $(DIR_OBJS)/%.o : %.c
 	mkdir -p $(dir $@)
 	$(COMPILER) -c $< -o $@
 
-val: all
-	valgrind --read-inline-info=yes --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes --suppressions=$(SUPP_FILE) ./$(NAME)
 clean:
 	$(RM) $(DIR_OBJS)
-	cd includes/libft && make clean && cd ../..
 
 fclean: clean
 	$(RM) $(NAME) $(DIR_OBJS)
