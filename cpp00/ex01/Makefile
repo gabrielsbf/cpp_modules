@@ -1,11 +1,11 @@
 NAME = phonebook
 
 RM = rm -rf
-COMPILER = g++ -Wall -Wextra -Werror --std=c++98
 
 DIR_OBJS = builds/
 DIR_SRCS = ./
 DIR_INCLUDES = includes/
+COMPILER = c++ -Wall -Wextra -Werror --std=c++98 -I $(DIR_INCLUDES)
 
 GET_SRCS = $(shell find $(DIR_SRCS))
 
@@ -26,6 +26,9 @@ $(DIR_OBJS):
 $(DIR_OBJS)/%.o : %.cpp
 	mkdir -p $(dir $@)
 	$(COMPILER) -c $< -o $@
+
+val: all
+	valgrind --leak-check=full ./$(NAME)
 
 clean:
 	$(RM) $(DIR_OBJS)

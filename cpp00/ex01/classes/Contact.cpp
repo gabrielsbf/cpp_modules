@@ -1,4 +1,9 @@
 #include "Contact.hpp"
+#include "utils.hpp"
+Contact::Contact(): contact_index(0), first_name(""), last_name(""),
+	nickname(""), phone_number(""){}
+
+Contact::~Contact(){}
 
 void Contact::assert_input(std::string *value, std::string prompt)
 {
@@ -7,6 +12,7 @@ void Contact::assert_input(std::string *value, std::string prompt)
 	{
 		std::cout << prompt;
 		std::getline(std::cin, *value);
+		verifyKeyError();
 		if (value->empty())
 			std::cout << "Empty Values cannot be accepted, try again!" <<std::endl;
 	}
@@ -14,7 +20,7 @@ void Contact::assert_input(std::string *value, std::string prompt)
 
 void Contact::register_contact(int index)
 {
-	contact_index = index;
+	this->contact_index = index;
 
 	std::cout << "\n·······Add contact module·······\n" <<std::endl;
 	std::cout << "Enter the necessary information!";
@@ -58,30 +64,30 @@ std::string Contact::len_valid(std::string *text)
 	}
 }
 
-int Contact::show_index()
+int Contact::show_index(void)
 {
 	return (contact_index);
 }
 
 
-void Contact::display_contact()
+void Contact::display_contact(void)
 {
 	std::cout << "··································" << std::endl;
-	std::cout << " Contact Index: " << contact_index << std::endl;
-	std::cout << "    First Name: " << first_name << std::endl;
-	std::cout << "     Last Name: " << last_name << std::endl;
-	std::cout << "      Nickname: " << nickname << std::endl;
-	std::cout << "  Phone Number: " << phone_number << std::endl;
-	std::cout << "Darkest Secret: " << darkest_secret << std::endl;
+	std::cout << " Contact Index: " << this->contact_index << std::endl;
+	std::cout << "    First Name: " << this->first_name << std::endl;
+	std::cout << "     Last Name: " << this->last_name << std::endl;
+	std::cout << "      Nickname: " << this->nickname << std::endl;
+	std::cout << "  Phone Number: " << this->phone_number << std::endl;
+	std::cout << "Darkest Secret: " << this->darkest_secret << std::endl;
 	std::cout << "··································" << std::endl;
 }
 
-void Contact::list_contact()
+void Contact::list_contact(void)
 {
-	std::cout << "|" << len_nbr_valid(contact_index) << "|";
-	std::cout << " " << len_valid(&first_name) << "|";
-	std::cout << " " << len_valid(&last_name) << "|";
-	std::cout << " " << len_valid(&nickname) << "|";
-	std::cout << " " << len_valid(&phone_number) << "|" << std::endl;
+	std::cout << "|" << len_nbr_valid(this->contact_index) << "|";
+	std::cout << " " << len_valid(&this->first_name) << "|";
+	std::cout << " " << len_valid(&this->last_name) << "|";
+	std::cout << " " << len_valid(&this->nickname) << "|";
+	std::cout << " " << len_valid(&this->phone_number) << "|" << std::endl;
 	std::cout<< "------------------------------------------------------------"<< std::endl;
 }

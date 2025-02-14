@@ -1,13 +1,19 @@
 #include "PhoneBook.hpp"
+#include "utils.hpp"
 
-void PhoneBook::add()
+PhoneBook::PhoneBook():phone_index(0), 
+				phone_limit(sizeof(contacts) / sizeof(contacts[0])){}
+
+PhoneBook::~PhoneBook(){}
+
+void PhoneBook::add(void)
 {
 	contacts[phone_index % phone_limit].register_contact(phone_index + 1);
 	phone_index++;
 	
 }
 
-void PhoneBook::list_all()
+void PhoneBook::list_all(void)
 {
 	int i;
 
@@ -39,13 +45,14 @@ int PhoneBook::showContactByIndex(int index)
 	return (-1);
 }
 
-void PhoneBook::search()
+void PhoneBook::search(void)
 {
 	int	i;
 	list_all();
 
 	std::cout << "Select the number of the contact index you want to display: ";
 	std::cin >> i;
+	verifyKeyError();
 	if (std::cin.fail())
 	{
 		std::cout << "Input is not valid! Returning to menu!\n" << std::endl;

@@ -1,0 +1,7 @@
+**/builds/
+*/phonebook
+**/megaphone
+*/*.o
+*/.vscode/
+.vscode/
+

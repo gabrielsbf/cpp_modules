@@ -1,4 +1,5 @@
 #include "PhoneBook.hpp"
+#include "utils.hpp"
 
 int	main()
 {
@@ -14,6 +15,7 @@ int	main()
 		std::cout << "EXIT: you exit the program\n" << std::endl;
 		std::cout << "Enter command: ";
 		std::cin >> user_input;
+		verifyKeyError();
 		std::cin.ignore();
 		if (user_input == "ADD")
 			phone.add();
