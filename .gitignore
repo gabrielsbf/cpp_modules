@@ -1,8 +1,5 @@
 **/builds/
-*/phonebook
-**/megaphone
+**/run/
 */*.o
 */.vscode/
 .vscode/
-**/ex01
-

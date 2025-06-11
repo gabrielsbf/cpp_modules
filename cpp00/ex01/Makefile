@@ -1,4 +1,6 @@
-NAME = phonebook
+EXEC_FD = ./run/
+
+NAME = $(EXEC_FD)phonebook
 
 RM = rm -rf
 
@@ -13,17 +15,20 @@ PRE-FILTER_SRCS = $(filter %.cpp, $(GET_SRCS))
 
 FILTER_SRCS = $(filter-out %testing.cpp, $(PRE-FILTER_SRCS))
 
-OBJS = $(FILTER_SRCS:%.cpp=$(DIR_OBJS)/%.o)
+OBJS = $(FILTER_SRCS:%.cpp=$(DIR_OBJS)%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(DIR_OBJS)
+$(NAME): $(OBJS) $(DIR_OBJS) $(EXEC_FD)
 	$(COMPILER) $(OBJS) -o $(NAME)
 
 $(DIR_OBJS):
-	mkdir builds
+	mkdir $(DIR_OBJS)
 
-$(DIR_OBJS)/%.o : %.cpp
+$(EXEC_FD):
+	mkdir $(EXEC_FD)
+
+$(DIR_OBJS)%.o : %.cpp
 	mkdir -p $(dir $@)
 	$(COMPILER) -c $< -o $@
 
@@ -34,7 +39,7 @@ clean:
 	$(RM) $(DIR_OBJS)
 
 fclean: clean
-	$(RM) $(NAME) $(DIR_OBJS)
+	$(RM) $(NAME) $(DIR_OBJS) $(EXEC_FD)
 
 re: fclean all
 

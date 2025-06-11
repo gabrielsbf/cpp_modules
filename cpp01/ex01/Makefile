@@ -1,4 +1,5 @@
-NAME = ex01
+EXEC_FD = ./run/
+NAME = $(EXEC_FD)ex01
 
 RM = rm -rf
 
@@ -17,11 +18,14 @@ OBJS = $(FILTER_SRCS:%.cpp=$(DIR_OBJS)%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(DIR_OBJS)
+$(NAME): $(OBJS) $(DIR_OBJS) $(EXEC_FD)
 	$(COMPILER) $(OBJS) -o $(NAME)
 
 $(DIR_OBJS):
-	mkdir builds
+	mkdir $(DIR_OBJS)
+
+$(EXEC_FD):
+	mkdir $(EXEC_FD)
 
 $(DIR_OBJS)%.o : %.cpp
 	mkdir -p $(dir $@)
@@ -34,7 +38,7 @@ clean:
 	$(RM) $(DIR_OBJS)
 
 fclean: clean
-	$(RM) $(NAME) $(DIR_OBJS)
+	$(RM) $(NAME) $(DIR_OBJS) $(EXEC_FD)
 
 re: fclean all
 
