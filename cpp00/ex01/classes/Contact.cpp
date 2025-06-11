@@ -18,22 +18,22 @@ void Contact::assert_input(std::string *value, std::string prompt)
 	}
 }
 
-void Contact::register_contact(int index)
+void Contact::set_contact(int index)
 {
 	this->contact_index = index;
 
 	std::cout << "\n·······Add contact module·······\n" <<std::endl;
 	std::cout << "Enter the necessary information!";
 	std::cout << "";
-	assert_input(&first_name, "\n···················First Name: ");
+	assert_input(&first_name,     "\n·····················First Name: ");
 
-	assert_input(&last_name, "\n····················Last Name: ");
+	assert_input(&last_name,      "\n······················Last Name: ");
 
-	assert_input(&nickname, "\n·····················Nickname: ");
+	assert_input(&nickname,       "\n·······················Nickname: ");
 
-	assert_input(&phone_number, "\n·················Phone Number: ");
+	assert_input(&phone_number,   "\n···················Phone Number: ");
 
-	assert_input(&darkest_secret, "\n··················Dark Secret: ");
+	assert_input(&darkest_secret, "\n····················Dark Secret: ");
 
 	std::cout << "······Contact Added With Success!······" << std::endl;
 }
@@ -69,16 +69,15 @@ int Contact::show_index(void)
 	return (contact_index);
 }
 
-
 void Contact::display_contact(void)
 {
 	std::cout << "··································" << std::endl;
-	std::cout << " Contact Index: " << this->contact_index << std::endl;
-	std::cout << "    First Name: " << this->first_name << std::endl;
-	std::cout << "     Last Name: " << this->last_name << std::endl;
-	std::cout << "      Nickname: " << this->nickname << std::endl;
-	std::cout << "  Phone Number: " << this->phone_number << std::endl;
-	std::cout << "Darkest Secret: " << this->darkest_secret << std::endl;
+	std::cout << "       Contact Index: " << this->contact_index << std::endl;
+	std::cout << "          First Name: " << this->first_name << std::endl;
+	std::cout << "           Last Name: " << this->last_name << std::endl;
+	std::cout << "            Nickname: " << this->nickname << std::endl;
+	std::cout << "        Phone Number: " << this->phone_number << std::endl;
+	std::cout << "      Darkest Secret: " << this->darkest_secret << std::endl;
 	std::cout << "··································" << std::endl;
 }
 

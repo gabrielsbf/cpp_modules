@@ -8,7 +8,7 @@ PhoneBook::~PhoneBook(){}
 
 void PhoneBook::add(void)
 {
-	contacts[phone_index % phone_limit].register_contact(phone_index + 1);
+	contacts[phone_index % phone_limit].set_contact(phone_index + 1);
 	phone_index++;
 	
 }
@@ -23,6 +23,7 @@ void PhoneBook::list_all(void)
 	std::cout << " First Name|";
 	std::cout << "   Nickname|";
 	std::cout << "      Phone|" << std::endl;
+	std::cout<< "------------------------------------------------------------"<< std::endl;
 	while (i < phone_limit && i < phone_index)
 		contacts[i++].list_contact();
 }

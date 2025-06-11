@@ -20,7 +20,7 @@ private:
 public:
 	Contact();
 	~Contact();
-	void register_contact(int index);
+	void set_contact(int index);
 	void display_contact(void);
 	void assert_input(std::string *value, std::string prompt);
 	std::string len_valid(std::string *text);
