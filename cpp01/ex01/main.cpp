@@ -12,10 +12,6 @@ int main(void)
         i++;
     }
     i = 0;
-    while (i < zombieNbr)
-    {
-        delete &horde[i];    
-        i++;
-        
-    }
+    delete[] horde;
+    
 }
