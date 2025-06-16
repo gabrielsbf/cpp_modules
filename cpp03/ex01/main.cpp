@@ -1,19 +1,25 @@
-
 #include "ClapTrap.hpp"
-#include <string>
+#include "ScavTrap.hpp"
+
 
 int	main(void) {
-	ClapTrap	trap1("trap1");
-	ClapTrap	trap2;
+	std::string scavTrapName = "Scav 01";
+	std::string clapTrapName = "CLAP 00";
 
-	trap1.beRepaired(1);
-	trap2.takeDamage(5);
-	trap2.beRepaired(4);
-	trap1.takeDamage(9);
-	trap1.beRepaired(5000);
-	trap2.beRepaired(5000);
-	trap2.takeDamage(5000);
-	trap2.beRepaired(5000);
-	trap2.takeDamage(1);
+	ScavTrap	*scavTrap = new ScavTrap(scavTrapName);
+	ClapTrap	clapTrap(clapTrapName);
+
+	clapTrap.attack(scavTrapName);
+	scavTrap->attack(clapTrapName);
+	scavTrap->takeDamage(SCAV_ATTACK);
+	clapTrap.takeDamage(CLAP_ATTACK);
+	clapTrap.beRepaired(5000);
+	scavTrap->guardGate();
+	for (int i = 0; i < 50; i++)
+		scavTrap->beRepaired(5000);
+	scavTrap->attack(scavTrapName);
+	scavTrap->guardGate();
+	scavTrap->takeDamage(5000);
+	delete scavTrap;
 	return (0);
 }

@@ -4,18 +4,17 @@
 # include <string>
 # include <iostream>
 
+#define CLAP_HIT 10
+#define CLAP_ENERGY 10
+#define CLAP_ATTACK 0
 
 class ClapTrap
 {
 	public:
-		static unsigned int const	initHitPoints = 10;
-		static unsigned int const	initEnergyPoints = 10;
-		static unsigned int const	initAttackDamage = 0;
-
 		ClapTrap(std::string name);
 		ClapTrap(ClapTrap const & src);
         ClapTrap(void);
-		~ClapTrap(void);
+		virtual ~ClapTrap(void);
 
 		ClapTrap &	operator=(ClapTrap const & src);
 		
@@ -24,15 +23,18 @@ class ClapTrap
 		unsigned int	getEnergyPoints(void) const;
 		unsigned int	getAttackDamage(void) const;
 		
-		void		attack(std::string & target);
+		virtual void		attack(std::string & target);
 		void		takeDamage(unsigned int amount);
 		void		beRepaired(unsigned int amount);
 
-	private:
+	protected:
 		std::string		_name;
 		unsigned int	_hitPoints;
+		unsigned int	_maxHitPoints;
 		unsigned int	_energyPoints;
+		unsigned int	_maxEnergyPoints;
 		unsigned int	_attackDamage;
+		unsigned int	_maxAttackDamage;
 };
 
 # endif

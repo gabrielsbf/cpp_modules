@@ -12,6 +12,8 @@ int	main(void) {
 	trap1.takeDamage(9);
 	trap1.beRepaired(5000);
 	trap2.beRepaired(5000);
+	for (int i = 0; i < 50; i++)
+		trap1.beRepaired(5000);
 	trap2.takeDamage(5000);
 	trap2.beRepaired(5000);
 	trap2.takeDamage(1);

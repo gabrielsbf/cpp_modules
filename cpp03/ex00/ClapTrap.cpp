@@ -3,18 +3,24 @@
 
 ClapTrap::ClapTrap(void)
 	: _name("Default ClapTrap"),
-	_hitPoints(ClapTrap::initHitPoints),
-	_energyPoints(ClapTrap::initEnergyPoints),
-	_attackDamage(ClapTrap::initAttackDamage) {
+	_hitPoints(CLAP_HIT),
+	_maxHitPoints(CLAP_HIT),
+	_energyPoints(CLAP_ENERGY),
+	_maxEnergyPoints(CLAP_ENERGY),
+	_attackDamage(CLAP_ATTACK),
+	_maxAttackDamage(CLAP_ATTACK) {
 	std::cout << "Default Claptrap was constructed." << std::endl;
 	
 }
 
 ClapTrap::ClapTrap(std::string name)
 	: _name(name),
-	_hitPoints(ClapTrap::initHitPoints),
-	_energyPoints(ClapTrap::initEnergyPoints),
-	_attackDamage(ClapTrap::initAttackDamage) {
+	_hitPoints(CLAP_HIT),
+	_maxHitPoints(CLAP_HIT),
+	_energyPoints(CLAP_ENERGY),
+	_maxEnergyPoints(CLAP_ENERGY),
+	_attackDamage(CLAP_ATTACK),
+	_maxAttackDamage(CLAP_ATTACK) {
 	std::cout << "A ClapTrap named \"" << name << "\" was constructed." << std::endl;
 	
 }
@@ -96,6 +102,7 @@ void	ClapTrap::takeDamage(unsigned int amount) {
 }
 
 void	ClapTrap::beRepaired(unsigned int amount) {
+	std::cout << "Energy points are: "<< this->_energyPoints << std::endl;
 	if (this->_hitPoints == 0) {
 		std::cout << "ClapTrap " << this->_name
 			<< " can't repair itself: already destroyed" << std::endl;
@@ -106,8 +113,8 @@ void	ClapTrap::beRepaired(unsigned int amount) {
 			<< " can't repair itself: out of energy points" << std::endl;
 			return ;	
 	}
-	else if ((this->_hitPoints + amount) > this->initHitPoints)
-		amount = this->initHitPoints - this->_hitPoints;
+	else if ((this->_hitPoints + amount) > this->_maxHitPoints)
+		amount = this->_maxHitPoints - this->_hitPoints;
 		
 	this->_energyPoints--;
 	this->_hitPoints += amount;
