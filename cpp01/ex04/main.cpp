@@ -34,18 +34,18 @@ int main(int argc, char *argv[])
         std::string file_name = argv[1];
         std::string new_file_name = file_name + ".replace";
         std::ifstream read_file(argv[1]);
-        // Check if read_file opened successfully
+
         if (!read_file.is_open()) {
             std::cerr << "Error: Could not open read_file" << std::endl;
             return 1;
         }
         std::ofstream write_file(new_file_name.c_str());
         std::string line;
-        // Read read_file line by line
+
         while (std::getline(read_file, line)) {
             replace_and_write(argv[2], argv[3], line, write_file);   
         }
-        // Close the read_file
+
         read_file.close();
         write_file.close();
     }

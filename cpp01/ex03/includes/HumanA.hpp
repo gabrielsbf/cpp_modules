@@ -9,8 +9,8 @@ private:
     Weapon &weapon;
 
 public:
-    HumanA(const std::string &h_name, Weapon &h_weapon):name(h_name), weapon(h_weapon){};
-    ~HumanA(){};
+    HumanA(const std::string &h_name, Weapon &h_weapon);
+    ~HumanA();
     void attack(void);
 };
 
