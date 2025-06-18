@@ -12,7 +12,6 @@ private:
 
 public:
 	Fixed();
-	// Fixed()
 	Fixed(const Fixed &copy);
 	Fixed& operator=(const Fixed& copy);
 	~Fixed();

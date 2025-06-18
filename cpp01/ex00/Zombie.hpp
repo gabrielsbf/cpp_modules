@@ -3,15 +3,14 @@
 
 #include <string>
 #include <iostream>
+
 class Zombie
 {
     private:
         std::string name;
     public:
-        Zombie(std::string ZombieName):name(ZombieName){};
-        ~Zombie(){
-                std::cout << "Zombie " << name << " was destroyed" << std::endl;
-        };
+        Zombie(std::string ZombieName);
+        ~Zombie();
         void announce(void);
 };
 
