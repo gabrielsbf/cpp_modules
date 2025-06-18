@@ -27,8 +27,8 @@ class ClapTrap
 		unsigned int		getMaxAttackDamage(void) const;
 		void				setName(std::string newName);
 		virtual void		attack(const std::string & target);
-		void		takeDamage(unsigned int amount);
-		void		beRepaired(unsigned int amount);
+		void				takeDamage(unsigned int amount);
+		void				beRepaired(unsigned int amount);
 
 	protected:
 		std::string		_name;

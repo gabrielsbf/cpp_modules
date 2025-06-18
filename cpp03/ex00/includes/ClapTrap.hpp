@@ -16,18 +16,21 @@ class ClapTrap
         ClapTrap(void);
 		~ClapTrap(void);
 
-		ClapTrap &	operator=(ClapTrap const & src);
+		ClapTrap &		operator=(ClapTrap const & src);
 		
-		std::string		getName(void) const;
+		const std::string	&	getName(void) const;
 		unsigned int	getHitPoints(void) const;
 		unsigned int	getEnergyPoints(void) const;
 		unsigned int	getAttackDamage(void) const;
-		
-		void		attack(std::string & target);
-		void		takeDamage(unsigned int amount);
-		void		beRepaired(unsigned int amount);
+		unsigned int	getMaxHitPoints(void) const;
+		unsigned int	getMaxEnergyPoints(void) const;
+		unsigned int	getMaxAttackDamage(void) const;
+		void			setName(std::string newName);
+		void			attack(const std::string & target);
+		void			takeDamage(unsigned int amount);
+		void			beRepaired(unsigned int amount);
 
-	protected:
+	private:
 		std::string		_name;
 		unsigned int	_hitPoints;
 		unsigned int	_maxHitPoints;

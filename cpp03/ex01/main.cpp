@@ -3,21 +3,25 @@
 
 
 int	main(void) {
-	std::string scavTrapName = "Scav 01";
+	std::string scavName01 = "Scav 01";
 	std::string clapTrapName = "CLAP 00";
-
-	ScavTrap	*scavTrap = new ScavTrap(scavTrapName);
+	std::string scavName02 = "Scavenger D2";
+	
+	ScavTrap	*scavTrap = new ScavTrap(scavName01);
+	ScavTrap	scav02 = *scavTrap;
+	scav02.setName("NEW SCAV COPY");
 	ClapTrap	clapTrap(clapTrapName);
 
-	clapTrap.attack(scavTrapName);
+	clapTrap.attack(scavName01);
+	
 	scavTrap->attack(clapTrapName);
-	scavTrap->takeDamage(SCAV_ATTACK);
+	scav02.takeDamage(SCAV_ATTACK);
 	clapTrap.takeDamage(CLAP_ATTACK);
 	clapTrap.beRepaired(5000);
 	scavTrap->guardGate();
 	for (int i = 0; i < 50; i++)
 		scavTrap->beRepaired(5000);
-	scavTrap->attack(scavTrapName);
+	scavTrap->attack(scavTrap->getName());
 	scavTrap->guardGate();
 	scavTrap->takeDamage(5000);
 	delete scavTrap;
