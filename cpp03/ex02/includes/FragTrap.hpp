@@ -1,3 +1,6 @@
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
+
 #include "ScavTrap.hpp"
 
 #define FRAG_HIT 100
@@ -14,3 +17,5 @@ class FragTrap: public ClapTrap {
 
 		void highFivesGuys(void);
 };
+
+#endif
