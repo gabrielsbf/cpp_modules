@@ -4,12 +4,14 @@ Cat::Cat(void): Animal()
 {
     this->type = "Cat";
     std::cout << "Cat Default constructor called" << std::endl;
+    std::cout << "******************************" << std::endl;
 }
 
 Cat::Cat(Cat const & src): Animal()
 {
     *this = src;
     std::cout << "Cat Copy constructor called" << std::endl;
+    std::cout << "******************************" << std::endl;
 }
 
 Cat & Cat::operator=(const Cat& src)
@@ -19,6 +21,7 @@ Cat & Cat::operator=(const Cat& src)
         type = src.type;
     }
     std::cout << "Cat Copy assignment operator called" << std::endl;
+    std::cout << "******************************" << std::endl;
     return *this;
 }
 
