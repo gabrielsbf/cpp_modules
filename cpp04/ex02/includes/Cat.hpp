@@ -15,7 +15,7 @@ class Cat: public Animal
 
 		Brain *getBrain();
 
-		virtual void makeSound(void);
+		void makeSound(void) const;
 	private:
 		Brain *_brain;
 };
