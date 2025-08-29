@@ -4,10 +4,10 @@ int main(void)
 {
     try 
     {
-        const Bureaucrat & buone = Bureaucrat("Claudin", 152);
+        const Bureaucrat & buone = Bureaucrat("Claudin", 150);
         std::cout << buone;
         (void)buone;
-        const Bureaucrat & errone = Bureaucrat("Claudin", 151);
+        const Bureaucrat & errone = Bureaucrat("Claudin", -1);
         std::cout << "Ending sentence" << std::endl;
         (void)errone;
     }
