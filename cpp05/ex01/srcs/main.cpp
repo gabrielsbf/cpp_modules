@@ -2,21 +2,12 @@
 
 int main(void)
 {
-    try 
-    {
-        const Bureaucrat & buone = Bureaucrat("Claudin", 150);
-        std::cout << buone;
-        (void)buone;
-        const Bureaucrat & errone = Bureaucrat("Claudin", -1);
-        std::cout << "Ending sentence" << std::endl;
-        (void)errone;
-    }
-    catch(Bureaucrat::GradeTooHighException &e)
-    {
-        std::cout << e.what() << std::endl;
-    }
-    catch(Bureaucrat::GradeTooLowException &e)
-    {
-        std::cout << e.what() << std::endl;
-    }
+
+	Bureaucrat buone = Bureaucrat("Claudin", 20);
+	std::cout << buone;
+	// const Bureaucrat & errone = Bureaucrat("Claudin", -1);
+	std::cout << "Ending sentence" << std::endl;
+	Form form("FORM 1", 19, 5);
+	buone.signForm(form);
+
 }
