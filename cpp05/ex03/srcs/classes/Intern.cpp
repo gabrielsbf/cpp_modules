@@ -32,12 +32,42 @@ AForm & Intern::getForm(void)
     return *this->form;
 }
 
+AForm * Intern::ReturnPresidential(std::string target)
+{
+    std::cout << "[INFO]: Intern Created a Presidential Pardon Form" << std::endl;
+    return new PresidentialPardonForm(target);
+}
+
+AForm * Intern::ReturnShrubbery(std::string target)
+{
+    std::cout << "[INFO]: Intern Created a Shrubbery Form" << std::endl;
+    return new ShrubberyCreationForm(target);
+}
+
+AForm * Intern::ReturnRobotomy(std::string target)
+{
+    std::cout << "[INFO]: Intern Created a Robotomy Request Form" << std::endl;
+    return new RobotomyRequestForm(target);
+}
+
+
 AForm * Intern::makeForm(std::string form_name, std::string target)
 {
     // TODO: Make function pointers in that function | to avoid if-else big statements
-    if (form_name == "presidential")
-    {
-        return new PresidentialPardonForm(target);
-    }
-    return NULL;
+    AForm * result = NULL;
+    std::map<std::string, AForm * (*)(std::string target)>actions;
+    actions["presidential"] = &Intern::ReturnPresidential;
+    actions["robotomy"] = &Intern::ReturnRobotomy;
+    actions["shrubbery"] = &Intern::ReturnShrubbery;
+    
+    if (actions.find(form_name) != actions.end())
+        result = actions[form_name](target);
+    else
+        throw CouldNotMakeForm();
+    return result;
+}
+
+const char *Intern::CouldNotMakeForm::what() const throw()
+{
+	return "Couldn't find form for 'form_name' declared!";
 }

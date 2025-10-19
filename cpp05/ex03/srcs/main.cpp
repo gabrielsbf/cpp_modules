@@ -4,7 +4,7 @@
 
 int main(void)
 {
-	AForm * formOne;
+	AForm *formOne;
 	Intern test;
 
 	Bureaucrat god("Zeus", 1);
@@ -13,8 +13,9 @@ int main(void)
 	std::cout << god << std::endl;
 	std::cout << teenTitans << std::endl;
 
-	try {
-		formOne = test.makeForm("presidential", "Herald of Rivia");
+	try
+	{
+		formOne = test.makeForm("robotomy", "Herald of Rivia");
 		// std::cout << formOne << std::endl;
 		god.signForm(*formOne);
 		formOne->execute(god);
@@ -23,20 +24,30 @@ int main(void)
 	catch (AForm::CouldNotSignException &e)
 	{
 		delete formOne;
-		std::cerr << "Couldn't continue due exception: " << e.what() <<std::endl <<std::endl;
+		std::cerr << "Couldn't continue due exception: " << e.what() << std::endl
+				  << std::endl;
 	}
 	catch (AForm::CouldNotExecException &e)
 	{
 		delete formOne;
-		std::cerr << "Couldn't continue due exception: " << e.what() <<std::endl<<std::endl;
+		std::cerr << "Couldn't continue due exception: " << e.what() << std::endl
+				  << std::endl;
 	}
 	catch (AForm::FormNotSignedException &e)
 	{
 		delete formOne;
-		std::cerr << "Couldn't continue due exception: " << e.what() <<std::endl<<std::endl;
+		std::cerr << "Couldn't continue due exception: " << e.what() << std::endl
+				  << std::endl;
 	}
-	catch (...)	{
+	catch (Intern::CouldNotMakeForm &e)
+	{
+		std::cerr << "Couldn't continue due exception: " << e.what() << std::endl
+				  << std::endl;
+	}
+	catch (...)
+	{
 		delete formOne;
-		std::cerr << "Couldn't continue due unexpected exception " << std::endl<<std::endl;
+		std::cerr << "Couldn't continue due unexpected exception " << std::endl
+				  << std::endl;
 	}
 }

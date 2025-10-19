@@ -60,6 +60,6 @@ void 	RobotomyRequestForm::FormExecution(void) const
 {
 	std::srand(static_cast<unsigned int>(time(NULL)));
 	int randomNumb = std::rand() % 2;
-	std::string robotomize_res = randomNumb == 0 ? " could'not be robotomized" : " was robotomized with success";
+	std::string robotomize_res = randomNumb == 0 ? " robotomize failured!" : " was robotomized with success";
 	std::cout <<"[INFO]: " <<this->target << robotomize_res << std::endl << std::endl;
 }

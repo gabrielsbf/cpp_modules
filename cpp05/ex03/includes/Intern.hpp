@@ -4,6 +4,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include <map>
 
 class AForm;
 
@@ -11,6 +12,9 @@ class Intern
 {
     private:
         AForm *form;
+        static AForm * ReturnPresidential(std::string target);
+        static AForm * ReturnShrubbery(std::string target);
+        static AForm * ReturnRobotomy(std::string target);
     public:
         // Constructors and Destructor;
         Intern(void);
@@ -19,9 +23,13 @@ class Intern
         ~Intern(void);
 
         AForm & getForm(void);
-
         AForm * makeForm(std::string form_name, std::string target);
+        
+        class CouldNotMakeForm: std::exception {
+			public:
+				const char *what() const throw();
 
+		};
 };
 
 #endif
