@@ -15,6 +15,11 @@ class Intern
         static AForm * ReturnPresidential(std::string target);
         static AForm * ReturnShrubbery(std::string target);
         static AForm * ReturnRobotomy(std::string target);
+        struct FormPair {
+            const char* name;
+            AForm* (*creator)(std::string);
+        };
+
     public:
         // Constructors and Destructor;
         Intern(void);

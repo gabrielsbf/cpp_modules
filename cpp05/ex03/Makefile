@@ -1,5 +1,5 @@
 EXEC_FD = ./run/
-NAME = $(EXEC_FD)ex02
+NAME = $(EXEC_FD)ex03
 
 RM = rm -rf
 

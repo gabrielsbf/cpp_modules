@@ -15,7 +15,7 @@ int main(void)
 
 	try
 	{
-		formOne = test.makeForm("robotomy", "Herald of Rivia");
+		formOne = test.makeForm("presidential", "Herald of Rivia");
 		// std::cout << formOne << std::endl;
 		god.signForm(*formOne);
 		formOne->execute(god);
