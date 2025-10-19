@@ -1,14 +1,16 @@
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef AFORM_HPP
+# define AFORM_HPP
 
 #include <string>
 #include <iostream>
 #include <exception>
+#include <cstdlib>
+#include <ctime>
 #include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
-class Form
+class AForm
 {
 	private:
 		const std::string	_name;
@@ -18,12 +20,12 @@ class Form
 
 	
 	public:
-		//Cannonical Form
-		Form(const std::string name, int grade_sign, int grade_execute);
-		Form(void);
-		Form(Form const & src);
-		Form & operator=(Form const & copy);
-		~Form();
+		//Cannonical AForm
+		AForm(const std::string name, int grade_sign, int grade_execute);
+		AForm(void);
+		AForm(AForm const & src);
+		AForm & operator=(AForm const & copy);
+		virtual ~AForm();
 
 		//Functions
 		//Getters
@@ -39,10 +41,16 @@ class Form
 
 		//Others
 		bool	beSigned(const Bureaucrat & beau);
-		
+		void	execute(Bureaucrat const & executor);
+		virtual void	FormExecution(void) const;
 		// Exceptions
 		void validateException(int grade);
 		void applyValidation(void);
+
+		class FormNotSignedException: std::exception {
+			public:
+				const char *what() const throw();
+		};
 
 		class GradeTooHighException: std::exception {
 			public:
@@ -54,9 +62,22 @@ class Form
 				const char *what() const throw();
 
 		};
+		
+		class CouldNotSignException: std::exception {
+			public:
+				const char *what() const throw();
+
+		};
+		
+		class CouldNotExecException: std::exception {
+			public:
+				const char *what() const throw();
+
+		};
+		
 };
 
-std::ostream& operator<<( std::ostream& os, const Form & form);
+std::ostream& operator<<( std::ostream& os, const AForm & form);
 
 
 #endif

@@ -7,7 +7,8 @@ Form::Form(const std::string name,
 								_grade_to_sign(grade_sign),
 								_grade_to_execute(grade_execute)
 {
-	validateException(this->_grade_to_sign);
+	std::cout << "Instance of Form is Being Created | Standard Parameters" << std::endl;
+	applyValidation();
 }
 
 Form::Form(void) : _name("default"),
@@ -15,69 +16,74 @@ Form::Form(void) : _name("default"),
 				   _grade_to_sign(0),
 				   _grade_to_execute(0)
 {
-	validateException(this->_grade_to_sign);
+	std::cout << "Instance of Form is Being Created | Default Method" << std::endl;
+	applyValidation();
 }
 
-Form::Form(Form const &src)
+Form::Form(Form const &src): _name(src.getName()),
+	_signedForm(src.getSignedForm()),
+	_grade_to_sign(src.getGradeToSign()),
+	_grade_to_execute(src.getGradeToExecute())
 {
-	if (&src != this)
-	{
-		*this = src;
-		validateException(this->_grade_to_sign);
-	}
+	std::cout << "Instance of Form is Being Created | Copy Method" << std::endl;
+	applyValidation();
 }
 
 Form &Form::operator=(Form const &copy)
 {
+	std::cout << "Instance of Form is Being Created | Assignment Operator Method" << std::endl;
 	if (this != &copy)
 	{
 
 		this->_signedForm = copy.getSignedForm();
 		this->_grade_to_execute = copy.getGradeToExecute();
 		this->_grade_to_sign = copy.getGradeToSign();
-		validateException(this->_grade_to_sign);
+		applyValidation();
 	}
 	return (*this);
 }
 
-Form::~Form() {}
-
-const 	std::string Form::getName(void) const
+Form::~Form() 
 {
-	return(this->_name);
+	std::cout << "Instance of Form | Name : " << this->getName() << " is being Destroyed" << std::endl;
 }
 
-bool	Form::getSignedForm(void) const
+const std::string Form::getName(void) const
 {
-	return(this->_signedForm);
+	return (this->_name);
 }
 
-int 	Form::getGradeToSign(void) const
+bool Form::getSignedForm(void) const
 {
-	return(this->_grade_to_sign);
+	return (this->_signedForm);
 }
 
-int 	Form::getGradeToExecute(void) const
+int Form::getGradeToSign(void) const
 {
-	return(this->_grade_to_execute);
+	return (this->_grade_to_sign);
 }
 
-void	Form::setSignedForm(bool value)
+int Form::getGradeToExecute(void) const
+{
+	return (this->_grade_to_execute);
+}
+
+void Form::setSignedForm(bool value)
 {
 	this->_signedForm = value;
 }
 
-void	Form::setGradeToSign(int value)
+void Form::setGradeToSign(int value)
 {
 	this->_grade_to_sign = value;
 }
 
-void	Form::setGradeToExecute(int value)
+void Form::setGradeToExecute(int value)
 {
 	this->_grade_to_execute = value;
 }
 
-bool	Form::beSigned(Bureaucrat &beau)
+bool Form::beSigned(const Bureaucrat & beau)
 {
 	bool result;
 
@@ -88,27 +94,39 @@ bool	Form::beSigned(Bureaucrat &beau)
 
 void Form::applyValidation(void)
 {
-        try
-        {
-            validateException(this->getGradeToSign());
-			validateException(this->getGradeToExecute());
-        }
-        catch(Form::GradeTooHighException &e)
-        {
-            std::cerr << "ERRO: Algum dos dois valores: [GRADE TO SIGN" << this->getGradeToSign() << "] | << [GRADE TO EXECUTE" << this->getGradeToExecute() << "muito grande! Agora estabelecida como '1'" << std::endl;
-			if (this->getGradeToExecute() < 1)
-				this->setGradeToExecute(1);
-			if (this->getGradeToSign() < 1)
-				this->setGradeToSign(1);
-        }
-        catch(Form::GradeTooLowException &e)
-        {
-            std::cerr << "ERRO: Algum dos dois valores: [GRADE TO SIGN" << this->getGradeToSign() << "] | << [GRADE TO EXECUTE" << this->getGradeToExecute() << "muito baixo! Agora estabelecida como '150'" << std::endl;
-            if (this->getGradeToExecute() > 150)
-				this->setGradeToExecute(150);
-			if (this->getGradeToSign() > 150)
-				this->setGradeToSign(150);
-        }
+	try
+	{
+		validateException(this->getGradeToSign());
+	}
+	catch (Form::GradeTooHighException &e)
+	{
+		std::cerr << "ERRO: (GRADE TO SIGN " << this->getGradeToSign() << ") [" << e.what() << "] now setted as '1'" << std::endl;
+		this->setGradeToSign(1);
+	}
+	catch (Form::GradeTooLowException &e)
+	{
+		std::cerr << "ERRO: (GRADE TO SIGN " << this->getGradeToSign() << ") [" << e.what() << "] now setted as '150'" << std::endl;
+		this->setGradeToSign(150);
+	}
+
+	try
+	{
+		validateException(this->getGradeToExecute());
+	}
+	catch (Form::GradeTooHighException &e)
+	{
+		std::cerr << "----------------------------------------------------------------------------" << std::endl;
+		std::cerr << "ERRO: (GRADE TO SIGN " << this->getGradeToExecute() << ") [" << e.what() << "] now setted as '1'" << std::endl;
+		std::cerr << "----------------------------------------------------------------------------" << std::endl;
+		this->setGradeToExecute(1);
+	}
+	catch (Form::GradeTooLowException &e)
+	{
+		std::cerr << "----------------------------------------------------------------------------" << std::endl;
+		std::cerr << "ERRO: (GRADE TO SIGN " << this->getGradeToExecute() << ") [" << e.what() << "] now setted as '150'" << std::endl;
+		std::cerr << "----------------------------------------------------------------------------" << std::endl;
+		this->setGradeToExecute(150);
+	}
 }
 
 void Form::validateException(int grade)

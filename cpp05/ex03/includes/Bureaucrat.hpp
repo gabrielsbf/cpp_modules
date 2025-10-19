@@ -4,9 +4,9 @@
 #include <string>
 #include <iostream>
 #include <exception>
-#include "Form.hpp"
+#include "AForm.hpp"
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -15,7 +15,7 @@ class Bureaucrat
 		int                 _grade;
 	
 	public:
-		//Cannonical Form
+		//Cannonical AForm
 		Bureaucrat(const std::string name, int grade);
 		Bureaucrat(void);
 		Bureaucrat(Bureaucrat const & src);
@@ -31,7 +31,7 @@ class Bureaucrat
 		void	setGrade(int value);
 
 		//Others
-		void	signForm(Form & formToSign) const;
+		void	signForm(AForm& formToSign) const;
 		
 		// Exceptions
 		void validateException(int grade);

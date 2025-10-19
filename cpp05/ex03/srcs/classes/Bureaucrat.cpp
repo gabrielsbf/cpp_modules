@@ -2,25 +2,25 @@
 
 Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name), _grade(grade)
 {
-	std::cout << "Instance of Bureaucrat is being created | Standard Parameters " << std::endl;
+	std::cout << "[INFO]: Instance of Bureaucrat is being created | Standard Parameters " << std::endl << std::endl;
 	applyValidation();
 }
 
 Bureaucrat::Bureaucrat(void) : _name("default"), _grade(0)
 {
-	std::cout << "Instance of Bureaucrat is being created | Without Parameters " << std::endl;
+	std::cout << "[INFO]: Instance of Bureaucrat is being created | Without Parameters " << std::endl << std::endl;
 	applyValidation();
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const &src): _name(src.getName()), _grade(src.getGrade())
 {
-	std::cout << "Instance of Bureaucrat is being created | Copy Method " << std::endl;
+	std::cout << "[INFO]: Instance of Bureaucrat is being created | Copy Method " << std::endl << std::endl;
 	applyValidation();
 }
 
 Bureaucrat &Bureaucrat::operator=(Bureaucrat const &copy)
 {
-	std::cout << "Instance of Bureaucrat is being created | Assignment Operator Method " << std::endl;
+	std::cout << "[INFO]: Instance of Bureaucrat is being created | Assignment Operator Method " << std::endl << std::endl;
 	if (this != &copy)
 	{
 		this->_grade = copy._grade;
@@ -30,7 +30,7 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &copy)
 }
 
 Bureaucrat::~Bureaucrat() {
-	std::cout << "Instance of Bureaucrat | Name : " << this->getName() << " is being Destroyed" << std::endl;
+	std::cout << "[INFO]: Instance of Bureaucrat | Name : " << this->getName() << " is being Destroyed" << std::endl << std::endl;
 }
 
 const std::string Bureaucrat::getName(void) const
@@ -48,14 +48,15 @@ void Bureaucrat::setGrade(int value)
 	this->_grade = value;
 }
 
-void Bureaucrat::signForm(Form & formToSign) const
+void Bureaucrat::signForm(AForm &formToSign) const
 {
-	std::cout << "Function Sign Form Called" << std::endl;
+	
 	bool isSigned = formToSign.beSigned(*this);
 	if (isSigned)
-		std::cout << this->getName() << " signed " << formToSign.getName() << std::endl;
+		std::cout << "[INFO]: Bureaucrat " << this->getName() << " signed " << formToSign.getName() << std::endl;
 	else
-		std::cout << this->getName() << " couldn't sign " << formToSign.getName() << " because grade is lower than the grade to sign" << std::endl;
+		std::cout << "[INFO]: Bureaucrat " << this->getName() << " couldn't sign " << formToSign.getName() << " because grade is lower than the grade to sign" << std::endl;
+	std::cout << std::endl;
 }
 
 void Bureaucrat::applyValidation(void)
@@ -66,18 +67,15 @@ void Bureaucrat::applyValidation(void)
 	}
 	catch (Bureaucrat::GradeTooHighException &e)
 	{
-		std::cerr << "----------------------------------------------------------------------------" << std::endl;
-		std::cerr << "ERRO: [" << e.what() << "] grade now setted as '1'" << std::endl;
-		std::cerr << "----------------------------------------------------------------------------" << std::endl;
+		std::cerr << "[ERRO]: [" << e.what() << "] grade now setted as '1'" << std::endl;
 		this->setGrade(1);
 	}
 	catch (Bureaucrat::GradeTooLowException &e)
 	{
-		std::cerr << "----------------------------------------------------------------------------" << std::endl;
-		std::cerr << "ERRO: [GRADE " << e.what() << "] grade now setted as '150'" << std::endl;
-		std::cerr << "----------------------------------------------------------------------------" << std::endl;
+		std::cerr << "[ERRO]: [GRADE " << e.what() << "] grade now setted as '150'" << std::endl;
 		this->setGrade(150);
 	}
+	std::cerr << std::endl;
 }
 
 void Bureaucrat::validateException(int grade)
