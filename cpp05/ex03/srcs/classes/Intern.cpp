@@ -56,7 +56,6 @@ AForm *Intern::ReturnRobotomy(std::string target)
 
 AForm *Intern::makeForm(std::string form_name, std::string target)
 {
-    // TODO: Make function pointers in that function | to avoid if-else big statements
     const FormPair formLists[] = {
         {"presidential", ReturnPresidential},
         {"robotomy", ReturnRobotomy},
